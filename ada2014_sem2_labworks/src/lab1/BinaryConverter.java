@@ -42,6 +42,9 @@ public class BinaryConverter {
 				+ " operations, result: " + result);
 	}
 
+	/**
+	 * a wrapper method for converting an array of integers
+	 */
 	public void convertToBinary() {
 		for (int i = 0; i < decimals.length; i++) {
 			toBinary(decimals[i]);
