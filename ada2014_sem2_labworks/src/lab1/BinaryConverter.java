@@ -33,8 +33,8 @@ public class BinaryConverter {
 		int temp = num;
 		int counter = 0;
 		while (temp > 0) {
-			result = temp % 2 + result;// 3 steps for modular + %2 lookup +
-										// reassignment
+			result = temp % 2 + result;// 3 steps for modular + creating new
+										// string + reassignment
 			temp /= 2; // 2 steps for division + reassignment
 			counter += 5; // therefore counter +5 each loop
 		}
@@ -52,9 +52,24 @@ public class BinaryConverter {
 	}
 
 	public static void main(String[] args) {
+		// n
 		int[] decimals = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048,
 				4096, 8192, 16384, 32768, 65536, 131072, 262144 };
 		BinaryConverter bc = new BinaryConverter(decimals);
 		bc.convertToBinary();
+		// n * 3
+		int[] decimalsMultiple3 = new int[decimals.length];
+		for (int i = 0; i < decimals.length; i++) {
+			decimalsMultiple3[i] = decimals[i] * 3;
+		}
+		BinaryConverter bc1 = new BinaryConverter(decimalsMultiple3);
+		bc1.convertToBinary();
+		// n * 0.3
+		int[] decimalsMultipleDot3 = new int[decimals.length];
+		for (int i = 0; i < decimals.length; i++) {
+			decimalsMultipleDot3[i] = (int) (decimals[i] * 0.3);
+		}
+		BinaryConverter bc2 = new BinaryConverter(decimalsMultipleDot3);
+		bc2.convertToBinary();
 	}
 }
