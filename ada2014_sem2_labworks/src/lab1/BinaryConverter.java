@@ -71,5 +71,7 @@ public class BinaryConverter {
 		}
 		BinaryConverter bc2 = new BinaryConverter(decimalsMultipleDot3);
 		bc2.convertToBinary();
+		BinaryConverter bc3 = new BinaryConverter(new int[] { 15 });
+		bc3.convertToBinary();
 	}
 }
