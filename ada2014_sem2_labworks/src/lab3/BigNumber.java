@@ -93,19 +93,28 @@ public class BigNumber {
 
 	public String multiple(String num1, String num2) {
 		String result = "", first = num1, second = num2;
+		int raised = 0;
 		// rules: first number has less digits
 		if (first.length() > second.length()) {
 			first = num2;
 			second = num1;
 		}
-		int raised = 0;
-		for (int i = first.length() - 1; i >= 0; i--) {
-			int base = (int) Math.pow(10, i);
-			for (int l = second.length() - 1; l >= 0; l--) {
+		// need to think about first case
+		int times10 = first.length() - 1;
+		for (int i = 0; i < first.length(); i++) {
+			String currentLine = "";
+			for (int l = 0; l < second.length(); l++) {
 				int tempMul = charToInt(first.charAt(i))
 						* charToInt(second.charAt(l));
-				
+				currentLine += tempMul % 10;
+				// currentLine += tempMul;
+				for (int len = times10; len > 0; len--)
+					currentLine += 0;
+				System.out.println(currentLine + "  " + tempMul);
 			}
+			if (i < first.length())
+				currentLine += 0;
+			result = add(result, currentLine);
 		}
 		return result;
 	}
@@ -182,10 +191,13 @@ public class BigNumber {
 
 	public static void main(String[] args) {
 		BigNumber bn = new BigNumber();
-		System.out.println(bn.add("123", "1"));
-		System.out.println(bn.add("123", "999"));
-		System.out.println(bn.minus("20", "421"));
-		System.out.println(bn.minus("99", "421"));
+		// System.out.println(bn.add("123", "1"));
+		// System.out.println(bn.add("123", "999"));
+		// System.out.println(bn.minus("20", "421"));
+		// System.out.println(bn.minus("99", "421"));
+		// System.out.println(bn.multiple("232", "6")); // fails
+		System.out.println(bn.multiple("232", "10"));
+		// System.out.println(bn.multiple("232", "11"));
 	}
 
 }
