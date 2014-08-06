@@ -204,6 +204,7 @@ public class BigNumber {
 		System.out.println(bn.multiple("232", "6"));
 		System.out.println(bn.multiple("232", "10"));
 		System.out.println(bn.multiple("232", "11"));
+		System.out.println(bn.multiple("232", "110"));
 	}
 
 }
