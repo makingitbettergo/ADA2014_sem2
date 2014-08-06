@@ -2,15 +2,15 @@ package lab3;
 
 public class BigNumber {
 
-	private String val;
+	// private String val;
 
-	public BigNumber(String val) {
-		this.val = val;
-	}
-
-	public BigNumber() {
-
-	}
+	// public BigNumber(String val) {
+	// this.val = val;
+	// }
+	//
+	// public BigNumber() {
+	//
+	// }
 
 	/**
 	 * only works with two positive numbers
@@ -91,6 +91,12 @@ public class BigNumber {
 		return result;
 	}
 
+	/**
+	 * 
+	 * @param num1
+	 * @param num2
+	 * @return
+	 */
 	public String multiple(String num1, String num2) {
 		String result = "", first = num1, second = num2;
 		int raised = 0;
@@ -99,23 +105,23 @@ public class BigNumber {
 			first = num2;
 			second = num1;
 		}
-		// need to think about first case
-		int times10 = first.length() - 1;
-		for (int i = 0; i < first.length(); i++) {
-			String currentLine = "";
-			for (int l = 0; l < second.length(); l++) {
-				int tempMul = charToInt(first.charAt(i))
-						* charToInt(second.charAt(l));
-				currentLine += tempMul % 10;
-				// currentLine += tempMul;
-				for (int len = times10; len > 0; len--)
-					currentLine += 0;
-				System.out.println(currentLine + "  " + tempMul);
+		String outterZeroes = "";
+		for (int i = first.length() - 1; i >= 0; i--) {
+			String innerZeroes = "";
+			for (int l = second.length() - 1; l >= 0; l--) {
+				int mulDigits = charToInt(second.charAt(l))
+						* charToInt(first.charAt(i));
+				String temp = "";
+				temp += mulDigits;
+				temp += innerZeroes + outterZeroes;
+				innerZeroes += "0";
+				System.out.println(temp + "  " + result);
+				result = add(result, temp);
 			}
-			if (i < first.length())
-				currentLine += 0;
-			result = add(result, currentLine);
+			outterZeroes += "0";
 		}
+		// need to think about first case
+
 		return result;
 	}
 
@@ -191,13 +197,13 @@ public class BigNumber {
 
 	public static void main(String[] args) {
 		BigNumber bn = new BigNumber();
-		// System.out.println(bn.add("123", "1"));
-		// System.out.println(bn.add("123", "999"));
-		// System.out.println(bn.minus("20", "421"));
-		// System.out.println(bn.minus("99", "421"));
-		// System.out.println(bn.multiple("232", "6")); // fails
+		System.out.println(bn.add("123", "1"));
+		System.out.println(bn.add("123", "999"));
+		System.out.println(bn.minus("20", "421"));
+		System.out.println(bn.minus("99", "421"));
+		System.out.println(bn.multiple("232", "6"));
 		System.out.println(bn.multiple("232", "10"));
-		// System.out.println(bn.multiple("232", "11"));
+		System.out.println(bn.multiple("232", "11"));
 	}
 
 }
