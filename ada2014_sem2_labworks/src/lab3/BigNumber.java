@@ -2,16 +2,6 @@ package lab3;
 
 public class BigNumber {
 
-	// private String val;
-
-	// public BigNumber(String val) {
-	// this.val = val;
-	// }
-	//
-	// public BigNumber() {
-	//
-	// }
-
 	/**
 	 * only works with two positive numbers
 	 * 
@@ -205,6 +195,7 @@ public class BigNumber {
 		System.out.println(bn.multiple("232", "10"));
 		System.out.println(bn.multiple("232", "11"));
 		System.out.println(bn.multiple("232", "110"));
+		System.out.println(bn.multiple("232220000000000002", "112310000000000000000000000000000"));
 	}
 
 }
