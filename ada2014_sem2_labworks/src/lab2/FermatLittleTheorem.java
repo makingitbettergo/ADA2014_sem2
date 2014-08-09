@@ -5,11 +5,11 @@ import java.util.Random;
 
 public class FermatLittleTheorem {
 
-	public static boolean checkPrime(BigInteger n, int iterations) {
+	public static boolean checkPrime(BigInteger n, int iter) {
 		Random rng = new Random();
 		if (n.equals(BigInteger.ONE))
 			return false;
-		for (int i = 0; i < iterations; i++) {
+		for (int i = 0; i < iter; i++) {
 			// Create an integer within the interval [1,n-1]
 			BigInteger a = new BigInteger(n.bitLength(), rng);
 			while (BigInteger.ONE.compareTo(a) > 0 || a.compareTo(n) >= 0) {
@@ -25,12 +25,10 @@ public class FermatLittleTheorem {
 	}
 
 	public static void main(String[] args) {
-		for (int i = 1; i < 900000; i++) {
-			if (checkPrime(new BigInteger(Integer.toString(i)), 10)) {
-				System.out.println(i + "prime");
-			} else {
-				System.out.println(i + "not prime");
-			}
+		if (checkPrime(new BigInteger(Integer.toString(341)), 1)) {
+			System.out.println("prime");
+		} else {
+			System.out.println("not prime");
 		}
 	}
 }

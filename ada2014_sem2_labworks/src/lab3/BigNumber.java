@@ -1,6 +1,24 @@
 package lab3;
 
-public class BigNumber {
+public class BigNumber implements Comparable<BigNumber> {
+
+	private String val;
+
+	/**
+	 * BigNumber constructor
+	 * 
+	 * @param val
+	 */
+	public BigNumber(String val) {
+		this.val = val;
+	}
+
+	/**
+	 * default constructor
+	 */
+	public BigNumber() {
+
+	}
 
 	/**
 	 * only works with two positive numbers
@@ -39,6 +57,7 @@ public class BigNumber {
 			temp += sumOfDigits;
 			temp += result;
 			result = temp;
+			this.val = result;
 		}
 		return result;
 	}
@@ -78,6 +97,7 @@ public class BigNumber {
 			temp += result;
 			result = temp;
 		}
+		this.val = result;
 		return result;
 	}
 
@@ -105,13 +125,12 @@ public class BigNumber {
 				temp += mulDigits;
 				temp += innerZeroes + outterZeroes;
 				innerZeroes += "0";
-				System.out.println(temp + "  " + result);
+				// System.out.println(temp + "  " + result);
 				result = add(result, temp);
 			}
 			outterZeroes += "0";
 		}
-		// need to think about first case
-
+		this.val = result;
 		return result;
 	}
 
@@ -185,6 +204,14 @@ public class BigNumber {
 		}
 	}
 
+	@Override
+	/**
+	 * @throws NullPointerException when val is not defined 
+	 */
+	public String toString() {
+		return val;
+	}
+
 	public static void main(String[] args) {
 		BigNumber bn = new BigNumber();
 		System.out.println(bn.add("123", "1"));
@@ -195,7 +222,18 @@ public class BigNumber {
 		System.out.println(bn.multiple("232", "10"));
 		System.out.println(bn.multiple("232", "11"));
 		System.out.println(bn.multiple("232", "110"));
-		System.out.println(bn.multiple("232220000000000002", "112310000000000000000000000000000"));
+		System.out.println(bn.multiple("232220000000000002",
+				"112310000000000000000000000000000"));
+	}
+
+	@Override
+	public int compareTo(BigNumber arg0) {
+
+		return 0;
+	}
+
+	private void removeLeadingZeros(String num) {
+
 	}
 
 }
