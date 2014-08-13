@@ -1,5 +1,7 @@
 package lab3;
 
+import java.math.BigInteger;
+
 public class BigNumber implements Comparable<BigNumber> {
 
 	private String val;
@@ -204,6 +206,31 @@ public class BigNumber implements Comparable<BigNumber> {
 		}
 	}
 
+	public static BigInteger binaryKaratsuba(BigInteger x, BigInteger y) {
+
+		// cutoff to brute force
+		int N = Math.max(x.bitLength(), y.bitLength());
+		if (N <= 2000)
+			return x.multiply(y); // optimize this parameter
+
+		// number of bits divided by 2, rounded up
+		N = (N / 2) + (N % 2);
+
+		// x = a + 2^N b, y = c + 2^N d
+		BigInteger b = x.shiftRight(N);
+		BigInteger a = x.subtract(b.shiftLeft(N));
+		BigInteger d = y.shiftRight(N);
+		BigInteger c = y.subtract(d.shiftLeft(N));
+
+		// compute sub-expressions
+		BigInteger ac = binaryKaratsuba(a, c);
+		BigInteger bd = binaryKaratsuba(b, d);
+		BigInteger abcd = binaryKaratsuba(a.add(b), c.add(d));
+
+		return ac.add(abcd.subtract(ac).subtract(bd).shiftLeft(N)).add(
+				bd.shiftLeft(2 * N));
+	}
+
 	@Override
 	/**
 	 * @throws NullPointerException when val is not defined 
@@ -224,6 +251,7 @@ public class BigNumber implements Comparable<BigNumber> {
 		System.out.println(bn.multiple("232", "110"));
 		System.out.println(bn.multiple("232220000000000002",
 				"112310000000000000000000000000000"));
+		System.out.println(bn.multiple("6", "31"));
 	}
 
 	@Override
